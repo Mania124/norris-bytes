@@ -8,7 +8,7 @@ import { Footer } from '../components/footer/footer';
 
 @Component({
   selector: 'app-category',
-  imports: [CommonModule, JokeCard, Header, Footer],
+  imports: [CommonModule, JokeCard, Footer],
   templateUrl: './category.html',
 })
 export class Category implements OnInit {
