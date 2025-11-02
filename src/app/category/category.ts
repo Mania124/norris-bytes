@@ -64,6 +64,16 @@ export class Category implements OnInit {
     }
   }
 
+  onJokeClick(joke: Joke) {
+    // Navigate to single joke page with the joke data
+    // Since we can't pass objects in routes, we'll pass an index or use a different approach
+    // For now, let's navigate with a simple ID (we can use the joke's index in the array)
+    const jokeIndex = this.jokes().indexOf(joke);
+    if (jokeIndex !== -1) {
+      this.router.navigate(['/joke', this.categoryName(), jokeIndex]);
+    }
+  }
+
   goBack() {
     this.router.navigate(['/']);
   }

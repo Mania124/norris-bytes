@@ -1,0 +1,78 @@
+<div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <!-- Back Button -->
+    <div class="mb-6">
+      <button
+        (click)="goBack()"
+        class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+        ← Back
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    @if (loading()) {
+      <div class="flex justify-center items-center py-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400"></div>
+        <span class="ml-4 text-lg">Loading joke...</span>
+      </div>
+    }
+
+    <!-- Error State -->
+    @if (error()) {
+      <div class="text-center py-8">
+        <div class="bg-red-900/50 border border-red-500 rounded-lg p-6 max-w-md mx-auto">
+          <p class="text-red-300">{{ error() }}</p>
+          <button
+            (click)="loadJokeFromCategory(category(), 0)"
+            class="mt-4 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition-colors">
+            Try Again
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- Joke Display -->
+    @if (joke() && !loading()) {
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
+            Chuck Norris Joke
+          </h1>
+          <p class="text-gray-300">A legendary roundhouse of wisdom</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-gray-800 to-gray-700 rounded-xl p-8 shadow-2xl border border-gray-600">
+          <div class="text-center mb-6">
+            <div class="w-24 h-1 bg-gradient-to-r from-yellow-400 to-red-500 mx-auto rounded-full mb-6"></div>
+          </div>
+
+          <div class="text-center">
+            <blockquote class="text-2xl md:text-3xl font-medium leading-relaxed text-gray-100 italic mb-8">
+              "{{ joke()!.value }}"
+            </blockquote>
+          </div>
+
+          <div class="flex justify-center gap-4">
+            <button
+              (click)="shareJoke()"
+              class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700
+                     px-6 py-3 rounded-full font-bold text-lg transition-all duration-300
+                     transform hover:scale-105 shadow-lg">
+              📤 Share
+            </button>
+            <button
+              (click)="loadJokeFromCategory(category(), 0)"
+              class="bg-gradient-to-r from-yellow-500 to-red-500 hover:from-yellow-600 hover:to-red-600
+                     px-6 py-3 rounded-full font-bold text-lg transition-all duration-300
+                     transform hover:scale-105 shadow-lg">
+              🔄 Another One
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+  </main>
+
+</div>

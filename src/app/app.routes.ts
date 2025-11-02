@@ -8,5 +8,9 @@ export const routes: Routes = [
   {
     path: 'category/:categoryName',
     loadComponent: () => import('./category/category').then(m => m.Category)
+  },
+  {
+    path: 'joke/:category/:index',
+    loadComponent: () => import('./joke/joke').then(m => m.JokeComponent)
   }
 ];
