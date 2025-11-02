@@ -3,12 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ChuckNorrisService, Joke } from '../services/chuck-norris';
 import { JokeCard } from '../components/joke-card/joke-card';
-import { Header } from '../components/header/header';
-import { Footer } from '../components/footer/footer';
 
 @Component({
   selector: 'app-category',
-  imports: [CommonModule, JokeCard, Footer],
+  imports: [CommonModule, JokeCard],
   templateUrl: './category.html',
 })
 export class Category implements OnInit {
