@@ -2,7 +2,6 @@ import { Component, signal, inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
-import { Header } from '../components/header/header';
 
 interface Joke {
   value: string;
@@ -10,7 +9,7 @@ interface Joke {
 
 @Component({
   selector: 'app-landing-page',
-  imports: [CommonModule, Header],
+  imports: [CommonModule],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
