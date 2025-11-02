@@ -1,11 +1,6 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { environment } from '../../environments/environment';
-
-interface Joke {
-  value: string;
-}
+import { ChuckNorrisService, Joke } from '../services/chuck-norris';
 
 @Component({
   selector: 'app-landing-page',
@@ -14,7 +9,7 @@ interface Joke {
   styleUrl: './landing-page.css',
 })
 export class LandingPage implements OnInit {
-  private http = inject(HttpClient);
+  private chuckNorrisService = inject(ChuckNorrisService);
 
   categories = signal<string[]>([]);
   selectedCategory = signal<string>('');
@@ -29,13 +24,12 @@ export class LandingPage implements OnInit {
   loadCategories() {
     this.loading.set(true);
     this.error.set('');
-    this.http.get<string[]>(`${environment.apiUrl}/jokes/categories`).subscribe({
-      next: (categories) => {
+    this.chuckNorrisService.getCategories().subscribe({
+      next: (categories: string[]) => {
         this.categories.set(categories);
-        // console.log(categories)
         this.loading.set(false);
       },
-      error: (err) => {
+      error: (err: any) => {
         this.error.set('Failed to load categories');
         this.loading.set(false);
         console.error('Error loading categories:', err);
@@ -49,12 +43,12 @@ export class LandingPage implements OnInit {
     this.error.set('');
     this.currentJoke.set(null);
 
-    this.http.get<Joke>(`${environment.apiUrl}/jokes/random?category=${category}`).subscribe({
-      next: (joke) => {
+    this.chuckNorrisService.getRandomJoke(category).subscribe({
+      next: (joke: Joke) => {
         this.currentJoke.set(joke);
         this.loading.set(false);
       },
-      error: (err) => {
+      error: (err: any) => {
         this.error.set('Failed to load joke');
         this.loading.set(false);
         console.error('Error loading joke:', err);
