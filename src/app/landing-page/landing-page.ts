@@ -1,5 +1,6 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { ChuckNorrisService, Joke } from '../services/chuck-norris';
 
 @Component({
@@ -10,10 +11,9 @@ import { ChuckNorrisService, Joke } from '../services/chuck-norris';
 })
 export class LandingPage implements OnInit {
   private chuckNorrisService = inject(ChuckNorrisService);
+  private router = inject(Router);
 
   categories = signal<string[]>([]);
-  selectedCategory = signal<string>('');
-  currentJoke = signal<Joke | null>(null);
   loading = signal(false);
   error = signal<string>('');
 
@@ -37,22 +37,7 @@ export class LandingPage implements OnInit {
     });
   }
 
-  loadJoke(category: string) {
-    this.selectedCategory.set(category);
-    this.loading.set(true);
-    this.error.set('');
-    this.currentJoke.set(null);
-
-    this.chuckNorrisService.getRandomJoke(category).subscribe({
-      next: (joke: Joke) => {
-        this.currentJoke.set(joke);
-        this.loading.set(false);
-      },
-      error: (err: any) => {
-        this.error.set('Failed to load joke');
-        this.loading.set(false);
-        console.error('Error loading joke:', err);
-      }
-    });
+  navigateToCategory(category: string) {
+    this.router.navigate(['/category', category]);
   }
 }
