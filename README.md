@@ -61,36 +61,52 @@ Visit [http://localhost:4200](http://localhost:4200) — Chuck Norris is waiting
 
 ## 🧩 Features
 
-- 🧠 Browse all joke categories from the ChuckNorris.io API.
-- ⚡ Click any category to instantly load a random fact.
-- 💅 Styled with Tailwind for speed and simplicity.
-- 🔄 Randomized jokes keep every click fresh and funny.
-- 📱 Responsive design for all devices.
+- 🏠 **Landing Page**: Welcome screen with category selection grid
+- 📂 **Category Pages**: Browse all joke categories from the ChuckNorris.io API
+- 🃏 **Multiple Jokes**: View 5 random jokes per category with grid layout
+- 🔍 **Single Joke View**: Click any joke card to view it individually
+- 📤 **Share Functionality**: Share jokes using Web Share API or clipboard
+- 🔄 **Load More**: Get additional jokes within categories
+- 🧭 **Navigation**: Seamless routing between landing, categories, and jokes
+- 💅 Styled with Tailwind for speed and simplicity
+- 🔄 Randomized jokes keep every click fresh and funny
+- 📱 Responsive design for all devices
+- 🌙 Dark theme with gradient accents
 
 ---
 
-## 🖼️ Preview (Example UI Concept)
+## 🖼️ User Journey
 
+### Landing Page
+Browse and select from all available Chuck Norris joke categories.
+
+### Category Pages
+View multiple jokes (5 at a time) for your selected category in a responsive grid layout.
+
+### Single Joke View
+Click any joke card to view it individually with sharing options and navigation controls.
+
+### Example Flow:
 ```
-[ Categories:  ]  [ animal ] [ career ] [ science ] [ dev ] [ sport ]
-
-💬 Category: Science
-"All arrays Chuck Norris declares are of infinite size, because Chuck Norris knows no bounds."
+🏠 Landing Page → 📂 Category Selection → 🃏 Multiple Jokes → 🔍 Single Joke View
 ```
 
 ---
 
-## 🌐 API
+## 🌐 API Integration
 
 This project uses the free **Chuck Norris API** — no API keys or secrets are required.
-Base URL:
-```
-https://api.chucknorris.io
-```
 
-Example endpoints:
-- Get categories: `/jokes/categories`
-- Get random joke: `/jokes/random?category={category}`
+**Base URL:** `https://api.chucknorris.io`
+
+**Endpoints Used:**
+- `GET /jokes/categories` - Retrieve all available joke categories
+- `GET /jokes/random?category={category}` - Get random joke from specific category
+
+**Service Architecture:**
+- `ChuckNorrisService` handles all API communication
+- Environment-based configuration for API URLs
+- Proper error handling and loading states
 
 ---
 
@@ -144,11 +160,14 @@ Vercel will serve the built Angular app with proper browser navigation enabled.
 
 ---
 
-## 🧪 Possible Enhancements
+## 🧪 Future Enhancements
 
-- Add search functionality using `/jokes/search?query=<term>`.
-- Save favorite jokes locally.
-- Introduce light/dark theme toggling (Chuck Norris works in all lighting conditions).
+- 🔍 **Search Functionality**: Add search using `/jokes/search?query=<term>`
+- ❤️ **Favorites System**: Save favorite jokes locally with localStorage
+- 🎨 **Theme Toggle**: Light/dark theme switching (Chuck Norris works in all lighting conditions)
+- 📱 **PWA Features**: Add service worker and offline capabilities
+- 📊 **Analytics**: Track popular categories and joke engagement
+- 🎯 **Social Sharing**: Enhanced sharing with category context
 
 ---
 
