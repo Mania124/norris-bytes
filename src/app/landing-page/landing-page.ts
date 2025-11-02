@@ -3,10 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
 
-interface Category {
-  value: string;
-}
-
 interface Joke {
   value: string;
 }
@@ -20,7 +16,7 @@ interface Joke {
 export class LandingPage implements OnInit {
   private http = inject(HttpClient);
 
-  categories = signal<Category[]>([]);
+  categories = signal<string[]>([]);
   selectedCategory = signal<string>('');
   currentJoke = signal<Joke | null>(null);
   loading = signal(false);
@@ -33,9 +29,10 @@ export class LandingPage implements OnInit {
   loadCategories() {
     this.loading.set(true);
     this.error.set('');
-    this.http.get<Category[]>(`${environment.apiUrl}/jokes/categories`).subscribe({
+    this.http.get<string[]>(`${environment.apiUrl}/jokes/categories`).subscribe({
       next: (categories) => {
         this.categories.set(categories);
+        console.log(categories)
         this.loading.set(false);
       },
       error: (err) => {
