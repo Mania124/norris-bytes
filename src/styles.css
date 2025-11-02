@@ -1,2 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+/* Custom scrollbar using Tailwind colors */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
