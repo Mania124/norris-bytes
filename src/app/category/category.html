@@ -1,0 +1,68 @@
+<div class="min-h-screen bg-linear-to-br from-gray-900 via-gray-800 to-black text-white">
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <!-- Back Button -->
+    <div class="mb-6">
+      <button
+        (click)="goBack()"
+        class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+        ← Back to Categories
+      </button>
+    </div>
+
+    <!-- Category Title -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold mb-2 bg-linear-to-r from-yellow-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
+        {{ categoryName() | titlecase }} Jokes
+      </h1>
+      <p class="text-gray-300">Roundhouse-quality facts from the {{ categoryName() | titlecase }} category</p>
+    </div>
+
+    <!-- Loading State -->
+    @if (loading()) {
+      <div class="flex justify-center items-center py-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400"></div>
+        <span class="ml-4 text-lg">Loading {{ categoryName() | titlecase }} wisdom...</span>
+      </div>
+    }
+
+    <!-- Error State -->
+    @if (error()) {
+      <div class="text-center py-8">
+        <div class="bg-red-900/50 border border-red-500 rounded-lg p-6 max-w-md mx-auto">
+          <p class="text-red-300">{{ error() }}</p>
+          <button
+            (click)="loadMoreJokes()"
+            class="mt-4 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition-colors">
+            Try Again
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- Jokes Grid -->
+    @if (jokes().length > 0 && !loading()) {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        @for (joke of jokes(); track $index) {
+          <app-joke-card
+            [joke]="joke"
+            [category]="categoryName()"
+            [showCategory]="false"
+            (jokeClicked)="onJokeClick($event)">
+          </app-joke-card>
+        }
+      </div>
+
+      <!-- Load More Button -->
+      <div class="text-center">
+        <button
+          (click)="loadMoreJokes()"
+          class="bg-linear-to-r from-yellow-500 to-red-500 hover:from-yellow-600 hover:to-red-600
+                 px-8 py-3 rounded-full font-bold text-lg transition-all duration-300
+                 transform hover:scale-105 shadow-lg">
+          🤛 Load More Roundhouse Facts 🤜
+        </button>
+      </div>
+    }
+  </main>
+</div>
