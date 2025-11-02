@@ -2,6 +2,7 @@ import { Component, signal, inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
+import { Header } from '../components/header/header';
 
 interface Joke {
   value: string;
@@ -9,7 +10,7 @@ interface Joke {
 
 @Component({
   selector: 'app-landing-page',
-  imports: [CommonModule],
+  imports: [CommonModule, Header],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
@@ -32,7 +33,7 @@ export class LandingPage implements OnInit {
     this.http.get<string[]>(`${environment.apiUrl}/jokes/categories`).subscribe({
       next: (categories) => {
         this.categories.set(categories);
-        console.log(categories)
+        // console.log(categories)
         this.loading.set(false);
       },
       error: (err) => {
