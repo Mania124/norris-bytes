@@ -37,8 +37,8 @@ This app demonstrates how to:
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/Mania124/norris-bytes.git
+cd norris-bytes
 ```
 
 ### 2️⃣ Install dependencies
@@ -80,7 +80,129 @@ Visit [http://localhost:4200](http://localhost:4200) — Chuck Norris is waiting
 ## 🧪 Possible Enhancements
 
 - Add search functionality using `/jokes/search?query=<term>`.
-- Save favorite jokes locally.
+- Save favo# 🥋 Norris Bytes
+A simple Angular single-page application that consumes the [Chuck Norris Jokes API](https://api.chucknorris.io).  
+Users can browse joke categories, view random jokes, and enjoy some legendary Chuck Norris humor.
+
+**🔗 Live Demo:** [https://norris-bytes.vercel.app/](https://norris-bytes.vercel.app/)
+
+---
+
+## 🚀 Features
+- Fetches data from the public [chucknorris.io](https://api.chucknorris.io) API  
+- Displays all available joke categories  
+- Loads a random joke when a category is clicked  
+- Responsive and fast Angular single-page app  
+- Deployed seamlessly on **Vercel**
+
+---
+
+## 🧰 Tech Stack
+- **Frontend:** Angular 20
+- **HTTP Client:** Angular `HttpClientModule`
+- **Styling:** Tailwincss
+- **Deployment:** Vercel (Static Hosting)
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/your-username/norris-bytes.git
+cd norris-bytes
+```
+
+### 2️⃣ Install dependencies
+```bash
+npm install
+```
+
+### 3️⃣ Run locally
+```bash
+ng serve
+```
+Then open [http://localhost:4200](http://localhost:4200) in your browser.
+
+---
+
+## 🌐 API
+This project uses the free **Chuck Norris API** — no API keys or secrets are required.  
+Base URL:
+```
+https://api.chucknorris.io
+```
+
+Example endpoints:
+- Get categories: `/jokes/categories`
+- Get random joke: `/jokes/random?category={category}`
+
+---
+
+## 🧱 Environment Configuration
+
+| File | Purpose |
+|------|----------|
+| `src/environments/environment.ts` | Development settings |
+| `src/environments/environment.prod.ts` | Production settings (used during build) |
+
+Example:
+```ts
+// environment.ts
+export const environment = {
+  production: false,
+  apiUrl: 'https://api.chucknorris.io'
+};
+```
+
+Use it in your services:
+```ts
+import { environment } from '../environments/environment';
+this.http.get(`${environment.apiUrl}/jokes/categories`);
+```
+
+---
+
+## 🗺️ Vercel Deployment
+
+1️⃣ **Build for production**
+```bash
+ng build --configuration production
+```
+
+2️⃣ **Add `vercel.json`** (for Angular routing support)
+```json
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
+```
+
+3️⃣ **Deploy**
+```bash
+vercel --prod
+```
+
+That’s it!  
+Vercel will serve the built Angular app with proper browser navigation enabled.
+
+---
+
+## 👨‍💻 Developer
+**Hezborn Achido Shikuku**  
+Full Stack Developer | Angular • Go • Node.js • TypeScript  
+📧 [shikukuhezborn@gmail.com](mailto:shikukuhezborn@gmail.com)  
+🌐 [Portfolio](http://shikuku-aws-portfolio.s3-website-us-east-1.amazonaws.com/)
+
+---
+
+## 🧾 License
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+> 💡 _Fun fact:_ Chuck Norris doesn’t deploy to production — production deploys itself when it senses he’s done coding.rite jokes locally.
 - Introduce light/dark theme toggling (Chuck Norris works in all lighting conditions).
 
 ---
